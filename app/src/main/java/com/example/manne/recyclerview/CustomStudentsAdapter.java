@@ -22,6 +22,10 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
 
     List<Student> studentList = new ArrayList<>();
 
+    public void setItems(List<Student> students){
+        studentList = students;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -34,7 +38,11 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+        // Get the data model based on position
+        Student student = studentList.get(position);
+
+        viewHolder.textView.setText(student.sName);
 
     }
 
