@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RecyclerView</string>
     <string name="student">Student</string>
+    <string name="online">Online</string>
 </resources>

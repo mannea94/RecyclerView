@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
     }
 
     ArrayList<Student> generateList(){
         ArrayList<Student> students = new ArrayList<>();
 
         for(int i=0; i<100; i++){
-            students.add(new Student("Marjan" +i, true));
+            students.add(new Student("Marjan" + i, false));
+            students.add(new Student("Andonov" + i, true));
         }
         return students;
 
