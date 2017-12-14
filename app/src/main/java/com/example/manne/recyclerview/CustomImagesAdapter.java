@@ -22,15 +22,15 @@ import butterknife.ButterKnife;
  * Created by manne on 07.12.2017.
  */
 
-public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAdapter.ViewHolder> {
+public class CustomImagesAdapter extends RecyclerView.Adapter<CustomImagesAdapter.ViewHolder> {
     Context context;
-    List<Student> studentList = new ArrayList<>();
+    List<ImageData> imageDataArrayList = new ArrayList<>();
 
-    public void setItems(List<Student> students){
-        studentList = students;
+    public void setItems(List<ImageData> students){
+        imageDataArrayList = students;
     }
 
-    public CustomStudentsAdapter(Context context_) {
+    public CustomImagesAdapter(Context context_) {
         context = context_;
     }
 
@@ -39,7 +39,7 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         //Inflate the custom layout
-        View view = inflater.inflate(R.layout.recycler_view_row, parent, false);
+        View view = inflater.inflate(R.layout.recyclerview_image_row, parent, false);
         //Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -48,20 +48,13 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Student student = studentList.get(position);
-        viewHolder.textView.setText(student.sName);
+        ImageData imageData = imageDataArrayList.get(position);
+        viewHolder.textView.setText(imageData.getTags());
 
-        if(student.issOnline()) {
-            viewHolder.textView2.setText("online");
-            viewHolder.textView2.setBackgroundColor(Color.GREEN);
-        }
-        else{
-            viewHolder.textView2.setText("offline");
-            viewHolder.textView2.setBackgroundColor(Color.RED);
-        }
+
 
         Picasso.with(context)
-                .load("https://vignette4.wikia.nocookie.net/readyplayerone/images/0/09/Rubik%27s_Cube.png/revision/latest?cb=20120905191549")
+                .load(imageData.getPreviewURL())
                 .fit()
                 .centerInside()
                 .into(viewHolder.imageView);
@@ -69,16 +62,16 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
 
     @Override
     public int getItemCount() {
-        return studentList.size();
+        return imageDataArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.text)
+        @BindView(R.id.text1)
         TextView textView;
-        @BindView(R.id.text2)
-        TextView textView2;
-        @BindView(R.id.imageView)
+//        @BindView(R.id.text2)
+//        TextView textView2;
+        @BindView(R.id.image)
         ImageView imageView;
 
         public ViewHolder(View itemView){

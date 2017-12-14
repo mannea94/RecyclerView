@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        CustomStudentsAdapter adapter = new CustomStudentsAdapter();
+        CustomStudentsAdapter adapter = new CustomStudentsAdapter(this);
 
         adapter.setItems(generateList());
 
@@ -33,8 +33,12 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Student> students = new ArrayList<>();
 
         for(int i=0; i<100; i++){
-            students.add(new Student("Marjan" + i, false));
-            students.add(new Student("Andonov" + i, true));
+            if(i%3==0) {
+                students.add(new Student("Marjan" + i, false));
+            }
+            else {
+                students.add(new Student("Andonov" + i, true));
+            }
         }
         return students;
 
